@@ -4,7 +4,7 @@
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">
-                        The glorious counter demo <3
+                        The glorious counter demo
                     </h1>
                     <h2 class="subtitle">
                         Enterprise counting since 2018
