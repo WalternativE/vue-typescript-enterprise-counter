@@ -1,29 +1,41 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <router-link class="navbar-item" to="/">
+          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        </router-link>
+      </div>
+
+      <div class="navbar-menu is-active">
+        <div class="navbar-start">
+          <router-link class="navbar-item" to="/">Counter <span class="tag is-info counter-tag">{{counter}}</span></router-link>
+          <router-link class="navbar-item" to="/settings">Settings</router-link>
+        </div>
+      </div>
+    </nav>
     <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script lang="ts">
+import {Component, Vue} from 'vue-property-decorator';
+
+import CounterModule from '@/modules/counter';
+import { getModule } from 'vuex-module-decorators';
+
+@Component
+export default class App extends Vue {
+  get counter() {
+    const state = getModule(CounterModule);
+    return state.Count;
   }
+}
+</script>
+
+<style lang="scss" scoped>
+.counter-tag {
+  margin-left: 4px;
+  border-radius: 12px;
 }
 </style>
